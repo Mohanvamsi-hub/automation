@@ -1,6 +1,4 @@
-script = $(realpath "$0")
-script_path = $(dirname "$script")
-source ${script_path}/common.sh
+source common.sh
 
 source common.sh
 echo -e "\e[31m >>>>>>>>>>> Installing Maven <<<<<<<<<<\e[0m"

@@ -1,6 +1,4 @@
-script = $(realpath "$0")
-script_path = $(dirname "$script")
-source ${script_path}/common.sh
+source common.sh
 
 echo -e "\e[31m >>>>>>> Disabling SQL version 8 <<<<<<\e[0m"
 dnf module disable mysql -y 

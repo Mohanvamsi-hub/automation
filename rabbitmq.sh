@@ -1,6 +1,4 @@
-script = $(realpath "$0")
-script_path = $(dirname "$script")
-source ${script_path}/common.sh
+source common.sh
 
 echo -e "\e[31m >>>>>>>> Configuring repo file <<<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
