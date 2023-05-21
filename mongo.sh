@@ -1,4 +1,5 @@
-pwd
+script_path = $(dirname $0)
+echo ${script_path}
 
 source common.sh
 exit
