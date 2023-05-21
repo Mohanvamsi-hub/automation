@@ -1,7 +1,7 @@
 script_path = $(dirname $0)
-echo ${script_path}
+source ${script_path}/common.sh
 
-source common.sh
+echo ${app_user}
 exit
 
 cp /home/centos/automation/mongo.repo /etc/yum.repos.d/mongo.repo
