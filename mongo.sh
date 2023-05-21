@@ -1,6 +1,7 @@
 pwd
-exit
+
 source common.sh
+exit
 
 cp /home/centos/automation/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org -y 
