@@ -22,7 +22,7 @@ echo -e "\e[31m>>>>>>>> installing nodeJS dependencies <<<<<<<<\e[0m"
 npm install 
 
 echo -e "\e[31m>>>>>>>> copying service file <<<<<<<<\e[0m"
-cp ${script_path}/catalogue.service /etc/systemd/system/catalogue.service
+cp /root/centos/automation/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[31m>>>>>>>> Starting the service <<<<<<<<\e[0m"
 systemctl daemon-reload
@@ -30,7 +30,7 @@ systemctl enable catalogue
 systemctl restart catalogue
 
 echo -e "\e[31m>>>>>>>> copying mongo repo <<<<<<<<\e[0m"
-cp ${script_path}/mongo.repo  /etc/yum.repos.d/mongo.repo
+cp /root/centos/automation/mongo.repo  /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>>>>>> Installing mongodb <<<<<<<<\e[0m"
 yum install mongodb-org-shell -y

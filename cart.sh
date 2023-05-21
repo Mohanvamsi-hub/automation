@@ -23,7 +23,7 @@ echo -e "\e[31m>>>>>>>> Installing nodejs dependancies <<<<<<<<\e[0m"
 npm install 
 
 echo -e "\e[31m>>>>>>>> Copying service file <<<<<<<<\e[0m"
-cp ${script_path}/cart.service /etc/systemd/system/cart.service
+cp /root/centos/automation/cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[31m>>>>>>>> Starting the service <<<<<<<<\e[0m"
 systemctl daemon-reload

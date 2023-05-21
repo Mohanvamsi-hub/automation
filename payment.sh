@@ -17,7 +17,7 @@ unzip /tmp/payment.zip
 
 echo -e "\e[31m >>>>>>>> Install python dep <<<<<<<<\e[0m"
 pip3.6 install -r requirements.txt
-cp ${script_path}/payment.service /etc/systemd/system/payment.service
+cp /root/centos/automation/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[31m >>>>>>>> Satrting the service <<<<<<<<\e[0m"
 systemctl daemon-reload

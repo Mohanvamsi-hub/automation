@@ -32,7 +32,7 @@ systemctl enable user
 systemctl restart user
 
 echo -e "\e[31m>>>>>>>> Setup code repo <<<<<<<<\e[0m"
-cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /root/centos/automation/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>>>>>> Installing mongodb <<<<<<<<\e[0m"
 yum install mongodb-org-shell -y

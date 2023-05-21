@@ -26,7 +26,7 @@ echo -e "\e[31m >>>>>>>>>>> Installing mysql <<<<<<<<<<\e[0m"
 yum install mysql -y 
 mysql -h mysql-dev.kmvdevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
 
-cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
+cp /root/centos/automation/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[31m >>>>>>>>>>> starting the service <<<<<<<<<<\e[0m"
 systemctl daemon-reload

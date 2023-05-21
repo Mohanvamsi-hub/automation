@@ -4,7 +4,7 @@ echo -e "\e[31m >>>>>>> Disabling SQL version 8 <<<<<<\e[0m"
 dnf module disable mysql -y 
 
 echo -e "\e[31m >>>>>>> setting up sql repo file <<<<<<\e[0m"
-cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
+cp /root/centos/automation/mysql.repo /etc/yum.repos.d/mysql.repo
 
 echo -e "\e[31m >>>>>>> Installing MYSQL <<<<<<\e[0m"
 yum install mysql-community-server -y
