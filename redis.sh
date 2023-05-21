@@ -1,5 +1,5 @@
 script_path=$(dirname $0)
-source /root/centos/automation/common.sh
+source ${script_path}/common.sh
 
 echo -e "\e[31m >>>> Installing redis repo file <<<<<< \e[0m"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y

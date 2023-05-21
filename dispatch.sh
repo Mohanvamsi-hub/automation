@@ -1,5 +1,5 @@
 script_path=$(dirname $0)
-source /root/centos/automation/common.sh
+source ${script_path}/common.sh
 
 yum install golang -y
 useradd roboshop

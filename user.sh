@@ -1,5 +1,5 @@
 script_path=$(dirname $0)
-source /root/centos/automation/common.sh
+source ${script_path}/common.sh
 
 echo -e "\e[31m>>>>>>>> Setup NodeJS repo <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -33,7 +33,7 @@ systemctl enable user
 systemctl restart user
 
 echo -e "\e[31m>>>>>>>> Setup code repo <<<<<<<<\e[0m"
-cp /root/centos/automation/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>>>>>> Installing mongodb <<<<<<<<\e[0m"
 yum install mongodb-org-shell -y

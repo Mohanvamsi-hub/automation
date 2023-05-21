@@ -1,5 +1,5 @@
 script_path=$(dirname $0)
-source /root/centos/automation/common.sh
+source ${script_path}/common.sh
 
 echo -e "\e[31m >>>>>>>> Configuring repo file <<<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
