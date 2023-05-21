@@ -1,3 +1,6 @@
+script = $(realpath "$0")
+echo ${script}
+exit
 source common.sh
 
 cp /home/centos/automation/mongo.repo /etc/yum.repos.d/mongo.repo
