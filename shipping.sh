@@ -1,4 +1,5 @@
-source common.sh
+script_path=$(dirname $0)
+source /root/centos/automation/common.sh
 
 source common.sh
 echo -e "\e[31m >>>>>>>>>>> Installing Maven <<<<<<<<<<\e[0m"

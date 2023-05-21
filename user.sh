@@ -1,4 +1,5 @@
-source common.sh
+script_path=$(dirname $0)
+source /root/centos/automation/common.sh
 
 echo -e "\e[31m>>>>>>>> Setup NodeJS repo <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash

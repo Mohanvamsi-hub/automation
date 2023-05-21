@@ -1,4 +1,6 @@
-source common.sh
+script_path=$(dirname $0)
+source /root/centos/automation/common.sh
+
 yum install nginx -y 
 cp roboshop.conf /etc/nginx/default.d/roboshop.conf
 rm -rf /usr/share/nginx/html/* 
