@@ -1,5 +1,4 @@
-script = $(realpath $0)
-echo ${script}
+pwd
 exit
 source common.sh
 
