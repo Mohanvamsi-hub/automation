@@ -18,7 +18,7 @@ cd /app
 unzip /tmp/payment.zip
 
 echo -e "\e[31m >>>>>>>> Install python dep <<<<<<<<\e[0m"
-pip3.6 install -r requirements.
+pip3.6 install -r requirements.txt
 
 echo -e "\e[31m >>>>>>>> copying service file <<<<<<<<\e[0m"
 sed -i -e "s|rabbitmq_user_password|${rabbitmq_user_password}|" ${script_path}/payment.service
