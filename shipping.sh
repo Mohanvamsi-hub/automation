@@ -1,6 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
+mysql_password=$1
 
 source common.sh
 echo -e "\e[31m >>>>>>>>>>> Installing Maven <<<<<<<<<<\e[0m"
@@ -26,7 +27,7 @@ mv target/shipping-1.0.jar shipping.jar
 
 echo -e "\e[31m >>>>>>>>>>> Installing mysql <<<<<<<<<<\e[0m"
 yum install mysql -y 
-mysql -h mysql-dev.kmvdevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+mysql -h mysql-dev.kmvdevops.online -uroot -p${mysql_password} < /app/schema/shipping.sql 
 
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
