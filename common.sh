@@ -59,6 +59,4 @@ printhead "Starting the service"
 systemctl daemon-reload
 systemctl enable ${component} 
 systemctl restart ${component}
-schema_setup()
-
 }
