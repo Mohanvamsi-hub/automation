@@ -3,6 +3,13 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_user_password=$1
 
+if [ -z "$rabbitmq_user_password" ]
+then
+    echo Input password is missing
+    exit 
+fi
+
+
 echo -e "\e[31m >>>>>>>> Configuring repo file <<<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
