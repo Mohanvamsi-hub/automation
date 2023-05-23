@@ -23,8 +23,7 @@ schema_setup(){
         printhead "Loading schema"
         mongo --host mongodb-dev.kmvdevops.online </app/schema/${component}.js
     fi
-}1
-
+}
 
 
 
