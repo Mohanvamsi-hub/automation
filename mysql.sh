@@ -3,7 +3,7 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_password=$1
 
-if [ -z mysql_password ]
+if [ -z ${mysql_password} ]
 then
     echo Input mysql password is missing
     exit
