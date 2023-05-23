@@ -10,9 +10,9 @@ echo count of args is $#
 student=vamsi
 money=100
 
-if [ $student == "vamsi" ]
+if [ ${student} == "vamsi" ]
 then
-    echo student name is $student, he has $money in his pocket
+    echo student name is ${student}, he has ${money} in his pocket
 fi 
 
 
