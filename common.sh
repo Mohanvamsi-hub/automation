@@ -2,9 +2,28 @@ app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 
+
+
+
 printhead(){
     echo -e "\e[31m>>>>>>>> $*  <<<<<<<<\e[0m"
 }
+
+
+
+schema_setup(){
+    echo -e "\e[31m>>>>>>>> copying mongo repo <<<<<<<<\e[0m"
+    cp ${script_path}/mongo.repo  /etc/yum.repos.d/mongo.repo
+
+    echo -e "\e[31m>>>>>>>> Installing mongodb <<<<<<<<\e[0m"
+    yum install mongodb-org-shell -y
+
+    echo -e "\e[31m>>>>>>>> Loading schema <<<<<<<<\e[0m"
+    mongo --host mongodb-dev.kmvdevops.online </app/schema/catalogue.js
+}
+
+
+
 
 func_nodejs(){
 
@@ -38,5 +57,5 @@ printhead "Starting the service"
 systemctl daemon-reload
 systemctl enable ${component} 
 systemctl restart ${component}
-
+schema_setup
 }
