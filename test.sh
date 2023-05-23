@@ -11,7 +11,8 @@ student=vamsi
 money=100
 
 if ["$student" == vamsi]
-echo student name is ${student}, he has ${money} in his pocket
+then
+    echo student name is ${student}, he has ${money} in his pocket
 fi 
 
 
