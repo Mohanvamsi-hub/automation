@@ -7,12 +7,14 @@ echo count of args is $#
 }
 
 
-student=vamsi
-money=100
+student=$1
+money=$2
 
 if [ ${student} == "vamsi" ]
 then
     echo student name is ${student}, he has ${money} in his pocket
+else
+    echo student name is ${student}, he has no in his pocket
 fi 
 
 
