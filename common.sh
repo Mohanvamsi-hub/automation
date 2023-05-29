@@ -52,8 +52,15 @@ func_schema_setup(){
 func_app_prereq(){
     
     printhead "Adding rboshop user"
-    useradd ${app_user} &>>$log_file
 
+    id ${app_user} &>>$log_file
+    if [ $? -ne 0 ]
+    then
+        useradd ${app_user} &>>$log_file
+    fi 
+    
+
+    func_stat_check $?
     printhead "creating a diretory"
     rm -rf /app
     mkdir /app &>>$log_file
