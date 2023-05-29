@@ -50,81 +50,81 @@ func_schema_setup(){
 
 func_app_prereq(){
     
-printhead "Adding rboshop user"
-useradd ${app_user} &>>$log_file
+    printhead "Adding rboshop user"
+    useradd ${app_user} &>>$log_file
 
-printhead "creating a diretory"
-rm -rf /app
-mkdir /app &>>$log_file
+    printhead "creating a diretory"
+    rm -rf /app
+    mkdir /app &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-printhead "downloading code content"
-curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
+    printhead "downloading code content"
+    curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-printhead "unzipping content in app dir"
-cd /app 
-unzip /tmp/${component}.zip &>>$log_file
+    printhead "unzipping content in app dir"
+    cd /app 
+    unzip /tmp/${component}.zip &>>$log_file
 
-func_stat_check
+    func_stat_check
 }
 
 func_systemd_setup(){
 
-cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
+    cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-printhead "starting the service"
-systemctl daemon-reload
-systemctl enable ${component} 
-systemctl restart ${component}
+    printhead "starting the service"
+    systemctl daemon-reload
+    systemctl enable ${component} 
+    systemctl restart ${component}
 
-func_stat_check
+    func_stat_check
 
 }
 
 func_nodejs(){
 
-printhead "Setup NodeJS repo"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
+    printhead "Setup NodeJS repo"
+    curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-printhead "Installing nodejs"
-yum install nodejs -y &>>$log_file
+    printhead "Installing nodejs"
+    yum install nodejs -y &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-func_app_prereq
+    func_app_prereq
 
-printhead "Installing nodejs dependancies"
-npm install &>>$log_file
+    printhead "Installing nodejs dependancies"
+    npm install &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-func_systemd_setup
-func_schema_setup
+    func_systemd_setup
+    func_schema_setup
 }
 
 
 func_java(){
     
-printhead "Installing Maven"
-yum install maven -y &>> /tmp/roboshop.log
+    printhead "Installing Maven"
+    yum install maven -y &>> /tmp/roboshop.log
 
-func_stat_check
+    func_stat_check
 
-func_app_prereq
+    func_app_prereq
 
-printhead "downloading dependencies"
-mvn clean package 
-mv target/${component}-1.0.jar ${component}.jar &>>$log_file
+    printhead "downloading dependencies"
+    mvn clean package 
+    mv target/${component}-1.0.jar ${component}.jar &>>$log_file
 
-func_stat_check
+    func_stat_check
 
-func_systemd_setup
+    func_systemd_setup
 
 }
