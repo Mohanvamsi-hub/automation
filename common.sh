@@ -11,8 +11,8 @@ printhead(){
 
 
 
-schema_setup(){
-    if [ -z "$schema_setup"=="mongo" ]
+func_schema_setup(){
+    if [ "$schema_setup" == "mongo" ]
     then
         printhead "copying mongo repo"
         cp ${script_path}/mongo.repo  /etc/yum.repos.d/mongo.repo
@@ -23,9 +23,42 @@ schema_setup(){
         printhead "Loading schema"
         mongo --host mongodb-dev.kmvdevops.online </app/schema/${component}.js
     fi
+    if [ "$schema_setup" == "mysql" ]
+    then
+        printhead "Installing mysql"
+        yum install mysql -y 
+        mysql -h mysql-dev.kmvdevops.online -uroot -p${mysql_password} < /app/schema/${component}.sql 
+    fi
 }
 
 
+func_app_prereq(){
+    
+printhead "Adding rboshop user"
+useradd ${app_user}
+
+printhead "creating a diretory"
+rm -rf /app
+mkdir /app 
+
+printhead "downloading code content"
+curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip 
+
+printhead "unzipping content in app dir"
+cd /app 
+unzip /tmp/${component}.zip
+}
+
+func_systemd_setup(){
+
+cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
+
+printhead "starting the service"
+systemctl daemon-reload
+systemctl enable ${component} 
+systemctl restart ${component}
+
+}
 
 func_nodejs(){
 
@@ -35,28 +68,27 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 printhead "Installing nodejs"
 yum install nodejs -y
 
-printhead "Adding user and creating a directory"
-useradd ${app_user}
-rm -rf /app
-mkdir /app 
-
-printhead "Setup code repo"
-curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip 
-
-printhead "Moving into the app directory"
-cd /app 
-
-printhead "unzipping code content"
-unzip /tmp/${component}.zip
+func_app_prereq
 
 printhead "Installing nodejs dependancies"
 npm install 
 
-printhead "Copying service file"
-cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
+func_systemd_setup
+func_schema_setup
+}
 
-printhead "Starting the service"
-systemctl daemon-reload
-systemctl enable ${component} 
-systemctl restart ${component}
+
+func_java(){
+    
+printhead "Installing Maven"
+yum install maven -y
+
+func_app_prereq
+
+printhead "downloading dependencies"
+mvn clean package 
+mv target/${component}-1.0.jar ${component}.jar
+
+func_systemd_setup
+
 }
