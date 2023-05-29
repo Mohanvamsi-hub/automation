@@ -53,6 +53,8 @@ func_app_prereq(){
 printhead "Adding rboshop user"
 useradd ${app_user}
 
+func_stat_check
+
 printhead "creating a diretory"
 rm -rf /app
 mkdir /app 
