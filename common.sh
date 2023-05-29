@@ -83,11 +83,27 @@ func_java(){
 printhead "Installing Maven"
 yum install maven -y
 
+if [ $? -eq 0 ]
+then
+    echo -e "\e[35m>>>>>> SUCCESS <<<<<<\e[0m"
+else
+    echo -e "\e[35m>>>>>> FAILURE <<<<<<\e[0m"
+    exit 1
+fi
+
 func_app_prereq
 
 printhead "downloading dependencies"
 mvn clean package 
 mv target/${component}-1.0.jar ${component}.jar
+
+if [ $? -eq 0 ]
+then
+    echo -e "\e[35m>>>>>> SUCCESS <<<<<<\e[0m"
+else
+    echo -e "\e[35m>>>>>> FAILURE <<<<<<\e[0m"
+    exit 1
+fi
 
 func_systemd_setup
 
