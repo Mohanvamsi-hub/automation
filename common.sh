@@ -51,7 +51,7 @@ func_schema_setup(){
 func_app_prereq(){
     
 printhead "Adding rboshop user"
-useradd ${app_user} > /tmp/roboshop.log
+useradd ${app_user} &> /tmp/roboshop.log
 
 func_stat_check
 
@@ -115,7 +115,7 @@ func_schema_setup
 func_java(){
     
 printhead "Installing Maven"
-yum install maven -y > /tmp/roboshop.log
+yum install maven -y &> /tmp/roboshop.log
 
 func_stat_check
 
