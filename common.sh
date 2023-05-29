@@ -120,7 +120,7 @@ func_nodejs(){
 func_java(){
     
     printhead "Installing Maven"
-    yum install maven -y &>> /tmp/roboshop.log
+    yum install maven -y &>>$log_file
 
     func_stat_check $?
 
@@ -134,4 +134,28 @@ func_java(){
 
     func_systemd_setup
 
+}
+
+func_python(){
+    printhead "Install python"
+    yum install python36 gcc python3-devel -y &>>$log_file
+    func_stat_check $?
+
+    func_app_prereq
+
+   
+    printhead "Install python dependencies"
+    pip3.6 install -r requirements.txt &>>$log_file
+    func_stat_check $?
+   
+    printhead "copying service file"
+    sed -i -e "s|rabbitmq_user_password|${rabbitmq_user_password}|" ${script_path}/${component}.service &>>$log_file
+    func_stat_check $?
+
+    cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
+    func_stat_check $?
+
+    printhead "Starting the service"
+    func_systemd_setup
+    func_stat_check $?
 }
