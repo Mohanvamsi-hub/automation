@@ -101,7 +101,7 @@ func_nodejs(){
     func_stat_check $?
 
     func_systemd_setup
-    func_schema_setup
+   
 }
 
 
